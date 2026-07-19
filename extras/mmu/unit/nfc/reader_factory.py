@@ -10,7 +10,7 @@
 # nothing about lanes, Spoolman, or Happy Hare.
 
 try:
-    from .. import bus as bus_module
+    from extras import bus as bus_module
 except ImportError:
     import bus as bus_module
 
