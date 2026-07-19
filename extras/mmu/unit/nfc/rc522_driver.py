@@ -63,6 +63,7 @@ _TModeReg       = 0x2A
 _TPrescalerReg  = 0x2B
 _TReloadRegH    = 0x2C
 _TReloadRegL    = 0x2D
+_CwGsPReg       = 0x28
 
 # RC522 PCD (reader chip) commands
 _PCD_IDLE       = 0x00
@@ -198,10 +199,11 @@ class RC522Driver:
                              "and modulation", self._gate)
             self._write(_TModeReg,      0x8D)
             self._write(_TPrescalerReg, 0x3E)
-            self._write(_TReloadRegH,   0x00)
-            self._write(_TReloadRegL,   0x1E)
+            self._write(_TReloadRegH,   0x03)
+            self._write(_TReloadRegL,   0xE8)
             self._write(_TxASKReg,      0x40)
             self._write(_ModeReg,       0x3D)
+            self._write(_CwGsPReg,      0x1C)  # Boost antenna power
             # Enable antenna TX pins (bits 0-1 of TxControlReg)
             tx = self._read(_TxControlReg)
             if not (tx & 0x03):
