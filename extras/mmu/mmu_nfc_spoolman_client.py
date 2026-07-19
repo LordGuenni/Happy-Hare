@@ -267,10 +267,13 @@ class SpoolmanClient:
             stored_raw = extra.get(self._rfid_key)
             if not stored_raw:
                 continue
-            stored_cleaned = str(stored_raw).strip('"\'')
-            stored_norm = self._normalise_uid(stored_cleaned)
-            if stored_norm == uid_norm:
-                return spool
+            
+            # Support multiple UIDs separated by comma
+            for uid_str in str(stored_raw).split(','):
+                stored_cleaned = uid_str.strip('"\'')
+                stored_norm = self._normalise_uid(stored_cleaned)
+                if stored_norm == uid_norm:
+                    return spool
         return None
 
     def lookup_spool_by_id(self, spool_id):
