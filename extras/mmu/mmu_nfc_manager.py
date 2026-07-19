@@ -2640,7 +2640,7 @@ class NFCGate:
                     line = line.strip()
                     if not line or line.startswith('#'):
                         continue
-                    if not line.startswith('mmu_calibration_bowden_lengths'):
+                    if not line.startswith('mmu_bowden_lengths'):
                         continue
                     parts = line.split('=', 1)
                     if len(parts) != 2:
